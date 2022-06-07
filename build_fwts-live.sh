@@ -35,7 +35,7 @@ fi
 
 if [ -e fwts-live-${ARCH} ] ; then
 	cp -r fwts-live-${ARCH} fwts-live
-elif [ -e fwts-live ] ; then
+elif [ ! -e fwts-live ] ; then
 	git clone https://github.com/ivanhu5866/fwts-live-${ARCH} fwts-live
 fi
 cd fwts-live
