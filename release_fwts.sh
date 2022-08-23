@@ -83,15 +83,21 @@ cp ../auto-packager/mk*sh .
 ./mktar.sh V${RELEASE_VERSION}
 
 # copy the final fwts tarball to fwts.ubuntu.com
+echo "ensure VPN is connected."
+read -p "Please [ENTER] to continue or Ctrl+C to abort"
+
 cd V${RELEASE_VERSION}/
-scp fwts-V${RELEASE_VERSION}.tar.gz fwts.ubuntu.com:/srv/fwts.ubuntu.com/www/release/
+scp fwts-V${RELEASE_VERSION}.tar.gz ivanhu@kernel-bastion-ps5:~/
 
 # update SHA256 on fwts.ubuntu.com
 echo "Run the following commands on fwts.ubuntu.com:"
-echo "  1. ssh fwts.ubuntu.com"
-echo "  2. cd /srv/fwts.ubuntu.com/www/release/"
-echo "  3. sha256sum fwts-V${RELEASE_VERSION}.tar.gz >> SHA256SUMS"
-echo "  4. exit"
+echo "  1. ssh kernel-bastion-ps5.internal"
+echo "  2. pe fwts"
+echo "  3. juju scp fwts-V${RELEASE_VERSION}.tar.gz 0:/srv/fwts.ubuntu.com/www/release/"
+echo "  4. juju ssh 0"
+echo "  5. cd /srv/fwts.ubuntu.com/www/release/"
+echo "  6. sha256sum fwts-V${RELEASE_VERSION}.tar.gz >> SHA256SUMS"
+echo "  7. exit"
 echo ""
 
 echo "type \"done\" to continue..."
@@ -106,7 +112,6 @@ done
 # generate the source packages for all supported Ubuntu releases
 cd ..
 ./mkpackage.sh V${RELEASE_VERSION}
-
 
 # do ADT test
 echo "do ADT test"
