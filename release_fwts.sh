@@ -93,7 +93,7 @@ scp fwts-V${RELEASE_VERSION}.tar.gz ivanhu@kernel-bastion-ps5:~/
 echo "Run the following commands on fwts.ubuntu.com:"
 echo "  1. ssh kernel-bastion-ps5.internal"
 echo "  2. pe fwts"
-echo "  3. juju scp fwts-V${RELEASE_VERSION}.tar.gz 0:/srv/fwts.ubuntu.com/www/release/"
+echo "  3. juju scp /home/ivanhu/fwts-V${RELEASE_VERSION}.tar.gz 0:/srv/fwts.ubuntu.com/www/release/"
 echo "  4. juju ssh 0"
 echo "  5. cd /srv/fwts.ubuntu.com/www/release/"
 echo "  6. sha256sum fwts-V${RELEASE_VERSION}.tar.gz >> SHA256SUMS"
