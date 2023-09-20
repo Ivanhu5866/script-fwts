@@ -139,9 +139,10 @@ echo "Check build status @ https://launchpad.net/~firmware-testing-team/+archive
 # finalize
 echo "When the build finishes, please do the following:"
 echo "  1. copy package to PPA https://launchpad.net/~canonical-fwts-team/+archive/ubuntu/fwts-release-builds"
-echo "  1. copy packages to stage PPA (Firmware Test Suite (Stable))"
-echo "  2. upload the new FWTS package to the Ubuntu universe archive"
-echo "  3. build fwts snap"
-echo "  3. email to fwts-devel and fwts-announce lists"
-echo "  4. update milestone on https://launchpad.net/fwts"
-echo "  5. build new fwts-live"
+echo "  2. copy packages to stage PPA (Firmware Test Suite (Stable))"
+echo "  3. create a new release note page https://wiki.ubuntu.com/FirmwareTestSuite/ReleaseNotes/xx.xx.xx
+echo "  3. upload the new FWTS package to the Ubuntu universe archive"
+echo "  4. build fwts snap"
+echo "  5. email to fwts-devel and fwts-announce lists"
+echo "  6. update milestone on https://launchpad.net/fwts"
+echo "  7. build new fwts-live"
