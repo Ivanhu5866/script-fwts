@@ -11,7 +11,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 shopt -s -o nounset
-SOURCE_REPO="ssh+git://kernel.ubuntu.com/srv/kernel.ubuntu.com/git/hwe/fwts.git"
+SOURCE_REPO="https://github.com/fwts/fwts"
 EDITOR=gedit
 
 if [ $# -eq 0 ] ; then
@@ -36,7 +36,7 @@ if [ -e fwts ] ; then
 	exit 1
 fi
 
-git clone git://kernel.ubuntu.com/hwe/fwts.git
+git clone https://github.com/fwts/fwts
 cd fwts/
 
 # generate changelog based on the previous git tag..HEAD
