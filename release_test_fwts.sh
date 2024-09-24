@@ -85,4 +85,5 @@ done
 #debuild -S -sa -I -i
 
 cd $RELEASE_VERSION
+echo "dput ppa:firmware-testing-team/scratch."
 dput ppa:firmware-testing-team/scratch */*es
