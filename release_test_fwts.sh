@@ -4,7 +4,7 @@
 #chmod +x release_test_fwts.sh
 #./release_test_fwts.sh 20.05.04 
 
-RELEASES="bionic focal jammy noble oracular"
+RELEASES="bionic focal jammy noble oracular plucky"
 FWTS=fwts
 
 
