@@ -40,17 +40,8 @@ mk_package()
 	sed "s/) $deb_release/$suffix) $rel;/" debian/changelog > debian/changelog.new
 	mv debian/changelog.new debian/changelog
 
-        #
-        # control hack
-        # remove dh-dkms dependency for those releases which are on need
-        #
-        if [ "$rel" = "bionic" -o "$rel" = "focal" -o "$rel" = "jammy" ]; then
-                sed '/dh-dkms,/d' debian/control > debian/control.new
-                mv debian/control.new debian/control
-        fi
+	echo 'y' | debuild -S -sa -I -i
 
-  	echo 'y' | debuild -S -sa -I -i
-#	rm -rf $FWTS
 	popd >& /dev/null
 }
 
