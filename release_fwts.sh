@@ -80,17 +80,19 @@ git push upstream master --tags
 mkdir fwts-tarball
 cd fwts-tarball/
 cp ../auto-packager/mk*sh .
-./mktar.sh V${RELEASE_VERSION}
+#./mktar.sh V${RELEASE_VERSION}
 
 # copy the final fwts tarball to fwts.ubuntu.com
 echo "ensure VPN is connected."
 read -p "Please [ENTER] to continue or Ctrl+C to abort"
 
-cd V${RELEASE_VERSION}/
-scp fwts-V${RELEASE_VERSION}.tar.gz ivanhu@kernel-bastion-ps5:~/
+mkdir V${RELEASE_VERSION}
 
-# update SHA256 on fwts.ubuntu.com
-echo "Run the following commands on fwts.ubuntu.com:"
+cd V${RELEASE_VERSION}/
+#scp fwts-V${RELEASE_VERSION}.tar.gz ivanhu@kernel-bastion-ps5:~/
+
+# update SHA256 on fwts.ubuntu.com(optional)
+echo "Run the following commands on fwts.ubuntu.com: (optional)"
 echo "  1. ssh kernel-bastion-ps5.internal"
 echo "  2. pe fwts"
 echo "  3. juju scp /home/ivanhu/fwts-V${RELEASE_VERSION}.tar.gz 0:/srv/fwts.ubuntu.com/www/release/"
