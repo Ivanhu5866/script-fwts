@@ -89,6 +89,11 @@ read -p "Please [ENTER] to continue or Ctrl+C to abort"
 mkdir V${RELEASE_VERSION}
 
 cd V${RELEASE_VERSION}/
+
+# generate the source packages for all supported Ubuntu releases
+cd ..
+./mkpackage.sh V${RELEASE_VERSION}
+
 #scp fwts-V${RELEASE_VERSION}.tar.gz ivanhu@kernel-bastion-ps5:~/
 
 # update SHA256 on fwts.ubuntu.com(optional)
@@ -110,10 +115,6 @@ while true ; do
 		break;
 	fi
 done
-
-# generate the source packages for all supported Ubuntu releases
-cd ..
-./mkpackage.sh V${RELEASE_VERSION}
 
 # do ADT test
 echo "do ADT test"
@@ -144,7 +145,8 @@ echo "  1. copy package to PPA https://launchpad.net/~canonical-fwts-team/+archi
 echo "  2. copy packages to stage PPA (Firmware Test Suite (Stable))"
 echo "  3. create a new release note page https://wiki.ubuntu.com/FirmwareTestSuite/ReleaseNotes/xx.xx.xx"
 echo "  4. upload the new FWTS package to the Ubuntu universe archive"
-echo "  5. update milestone on https://launchpad.net/fwts"
-echo "  6. build fwts snap, https://launchpad.net/~firmware-testing-team/fwts/+snap/fwts"
-echo "  7. email to fwts-devel and fwts-announce lists"
-echo "  8. build new fwts-live"
+echo "  5. make fwts release https://github.com/fwts/fwts"
+echo "  6. update milestone on https://launchpad.net/fwts"
+echo "  7. build fwts snap, https://launchpad.net/~firmware-testing-team/fwts/+snap/fwts"
+echo "  8. email to fwts-devel and fwts-announce lists"
+echo "  9. build new fwts-live"
