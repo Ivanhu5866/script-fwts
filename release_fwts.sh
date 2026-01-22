@@ -94,7 +94,8 @@ cd V${RELEASE_VERSION}/
 cd ..
 ./mkpackage.sh V${RELEASE_VERSION}
 
-#scp fwts-V${RELEASE_VERSION}.tar.gz ivanhu@kernel-bastion-ps5:~/
+cp fwts_${RELEASE_VERSION}.orig.tar.gz fwts-V${RELEASE_VERSION}.tar.gz
+scp fwts-V${RELEASE_VERSION}.tar.gz ivanhu@kernel-bastion-ps5:~/
 
 # update SHA256 on fwts.ubuntu.com(optional)
 echo "Run the following commands on fwts.ubuntu.com: (optional)"
