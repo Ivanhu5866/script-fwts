@@ -45,6 +45,24 @@ prompt_continue() {
 	read -r -p "Please [ENTER] to continue or Ctrl+C to abort"
 }
 
+prompt_email_user() {
+	local default_value="$1"
+	local value=""
+
+	if [ -n "${EMAIL_USER:-}" ]; then
+		printf '%s\n' "${EMAIL_USER}"
+		return 0
+	fi
+
+	if [ -n "${default_value}" ]; then
+		read -r -p "Email user for canonical.com/ubuntu.com [${default_value}]: " value
+		printf '%s\n' "${value:-${default_value}}"
+	else
+		read -r -p "Email user for canonical.com/ubuntu.com: " value
+		printf '%s\n' "${value}"
+	fi
+}
+
 prompt_git_name() {
 	local default_value="$1"
 	local value=""
@@ -109,8 +127,11 @@ BUILD_SLUG=$(repo_slug "$BUILD_REPO")
 LIVE_SLUG=$(repo_slug "$LIVE_REPO")
 BUILD_BRANCH=$(gh repo view "$BUILD_SLUG" --json defaultBranchRef --jq .defaultBranchRef.name)
 DEFAULT_GIT_NAME=$(global_git_config user.name || true)
+DEFAULT_GIT_EMAIL=$(global_git_config user.email || true)
 GIT_NAME=$(prompt_git_name "${DEFAULT_GIT_NAME}")
 [ -n "${GIT_NAME}" ] || die "Git author name is required"
+EMAIL_USER=$(prompt_email_user "$(default_email_user "${DEFAULT_GIT_EMAIL}")")
+[ -n "${EMAIL_USER}" ] || die "Email user is required"
 
 TEMP_DIR=$(mktemp -d "${TMPDIR:-/tmp}/fwts-live-release.${RELEASE_VERSION}.XXXXXX")
 CLONE_DIR="${TEMP_DIR}/fwts-live"
@@ -166,7 +187,7 @@ echo "${CHECKSUM}  ${IMAGE_NAME}" >> "${CLONE_DIR}/SHA256SUM.txt"
 
 pushd "$CLONE_DIR" >/dev/null
 git config user.name "${GIT_NAME}"
-git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+git config user.email "${EMAIL_USER}@canonical.com"
 git add SHA256SUM.txt
 git commit -s -m "${RELEASE_VERSION}-x86_64"
 git tag "${RELEASE_VERSION}-x86_64"
